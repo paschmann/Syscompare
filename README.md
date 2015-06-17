@@ -1,4 +1,4 @@
-Syscompare is a SAP HANA application giving auditors, developers, system admins and anyone else using HANA the ability to compare files across systems. The app is a native HANA application and uses xshttpdest files to connect, retrieve and compare. If you prefer to download a Delivery Unit, please click here.
+Syscompare is a SAP HANA application giving auditors, developers, system admins and anyone else using HANA the ability to compare files across systems. The app is a native HANA application and uses xshttpdest files to connect, retrieve and compare. If you prefer to download a Delivery Unit, please click here. [Delivery Unit Download](http://www.metric2.com/metric2-downloads/)
 
 ###Install Instructions from Github
 
@@ -7,12 +7,12 @@ Syscompare is a SAP HANA application giving auditors, developers, system admins 
 
 ###Install Instructions from Delivery Unit
 
-1. Download the DU here (email requested to keep up to date)
+1. Download the DU [here](http://www.metric2.com/metric2-downloads/) (email requested to stay up to date)
 2. Using lifecycle manager, Import the DU
 
 ###Post Installation Instructions
 
-1. Setup your 2 .xshttpdest files using the admin tool on the instance where the application files are running: e.g.
+1. Setup your 2 .xshttpdest files using the admin tool on the instance where the application files are running.
 2. Open the Index.html file here: 
 
 ##Usage
