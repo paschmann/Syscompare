@@ -1,0 +1,8 @@
+description = "dev";
+host = "dev.metric2.us.to";
+port = 8000;
+proxyType = none;
+proxyHost = "";
+authType = basic;
+useSSL = false;
+timeout = 0;
