@@ -28,9 +28,3 @@ Syscompare is a SAP HANA application giving auditors, developers, system admins 
 
 Uses the Orion File API available in > SPS09
 Files can be opened directly in the application (easily compare differences)
-
-## Features
-
-- Reports can be generated
-- The scans can be automated from a XSJob
-- Scans can be initiated from an REST API Call
