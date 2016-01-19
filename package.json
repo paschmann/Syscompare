@@ -1,0 +1,31 @@
+{
+  "name": "syscompare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paschmann/Syscompare.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paschmann/Syscompare/issues"
+  },
+  "homepage": "https://github.com/paschmann/Syscompare#readme",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-useref": "^3.0.4",
+    "run-sequence": "^1.1.5"
+  }
+}

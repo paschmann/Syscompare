@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html class="no-js">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>HANA System Compare</title>
+    <script src="js/main.min.js"></script>
+    
+    <link rel="stylesheet" href="css/styles.min.css">
+</head>
+
+<body>
+    <div id="executing"></div>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logoarea" class="logo-area">
+                <img src="img/logo.png" id="logo" />SysCompare
+            </div>
+
+            <div class="tools-bar">
+                <ul class="nav navbar-nav nav-main-xs">
+                    <li><a href="#sidebar" id="btnSideBar" class="icon-toolsbar"><i class="fa fa-bars"></i></a>
+                    </li>
+                    <li><a href="#"><span id="filename"></span></a>
+                    </li>
+                    <li><a href="#"><span id="version"></span></a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right tooltip-area">
+                    <li class="hidden-xs hidden-sm"><a href="#" id="exeTime"><i class="fa fa-clock-o"></i></a>
+                    </li>
+                    <li class="hidden-xs hidden-sm"><a href="../../sap/hana/xs/ide/editor/" target="_blank" id="btnInline" title="Open Editor"><i class="fa fa-list-alt"></i></a>
+                    </li>
+                    <!-- Version 2 feature experimental -->
+                    <li class="hidden-xs hidden-sm"><a href="#" onclick="compareFiles(0);" id="btnSidetoSide" class="h-seperate" onClick="" title="Compare Side by Side"><i class="fa fa-columns"></i></a>
+                    </li>
+                    <li class="hidden-xs hidden-sm"><a href="#" onclick="compareFiles(1);" id="btnInline" class="h-seperate" title="Compare Inline"><i class="fa fa-align-justify"></i></a>
+                    </li>
+                    <li class="hidden-xs hidden-sm"><a href="#" onclick="showSettings();" id="btnInline" class="h-seperate" title="Compare Inline"><i class="fa fa-gear"></i></a>
+                    </li>
+                </ul>
+                <!-- //nav-bar-->
+            </div>
+            <!-- //tools-bar-->
+        </div>
+        <!-- //header-->
+
+        <div id="nav">
+            <div id="nav-scroll">
+                <div id="navstep">Application Path:</div>
+                <input type="text" id="repopath" class="form-control" disabled/>
+                <br />
+                <div id="navstep">HANA System 1:</div>
+                <div class="input-group">
+                    <input type="text" id="hanasystem0" class="form-control" disabled/>
+                    <span class="input-group-addon" onclick="checkConnect(0);" id="check0"><i class="fa fa-check"></i></span>
+                </div>
+                <br />
+                <div id="navstep">HANA System 2:</div>
+                <div class="input-group">
+                    <input type="text" id="hanasystem1" class="form-control" disabled/>
+                    <span class="input-group-addon" onclick="checkConnect(1);" id="check1"><i class="fa fa-check"></i></span>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="btn-group btn-group-justified" role="group">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" onclick="showSettings();"><i class="fa fa-gear"></i>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" onclick="doCheck();"><i class="fa fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr>
+                <ul id="hanasystem"></ul>
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="loadspinner" class="loading">
+                <!-- We make this div spin -->
+                <div class="spinner">
+                    <!-- Mask of the quarter of circle -->
+                    <div class="mask">
+                        <!-- Inner masked circle -->
+                        <div class="maskedCircle"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="results"></div>
+        </div>
+
+        <!-- Modal Boxes -->
+
+        <div id="infoModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Processing Complete</h4>
+                    </div>
+                    <div id="infoBody" class="modal-body row">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header" aria-hidden="true">
+            <div id="modaldlg" class="modal-dialog">
+                <div class="modal-content" style="height: 100%; width: 100%;">
+                    <div class="modal-header">
+                        <button id="btnModalX" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="modal-header">Settings</h4>
+                    </div>
+                    <div id="dialogMsg1"></div>
+                    <div id="dialogHTML1" class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="txtRepo">Application Path</label>
+                                <input type="hanarepo" class="form-control" id="txtRepo" placeholder="RepoPath">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtHanaSystem1">HANA System 1</label>
+                                <input type="hanasystem" class="form-control" id="txtHanaSystem1" placeholder="The filename of the xshttpdest">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtHanaSystem2">HANA System 2</label>
+                                <input type="hanasystem" class="form-control" id="txtHanaSystem2" placeholder="The filename of the xshttpdest">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnModalClose" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="btnModalDownload" onclick="saveDialog();" type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //myModal -->
+
+    </div>
+    <!-- //wrapper -->
+</body>
+
+</html>

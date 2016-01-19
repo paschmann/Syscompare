@@ -1,0 +1,8 @@
+description = "prod";
+host = "71.68.6.21";
+port = 8000;
+proxyType = none;
+proxyHost = "";
+authType = basic;
+useSSL = false;
+timeout = 0;
